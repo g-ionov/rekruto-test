@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}Второе задание{% endblock title %}
+
+{% block script %}
+    {% if user.is_authenticated %}
+        <script type="text/javascript">
+        window.onbeforeunload = function() {
+        window.setTimeout(function () {
+        window.location = "{% url 'logout' %}";
+    }, 0);
+    window.onbeforeunload = null;
+}
+        </script>
+    {% endif %}
+{% endblock script %}
+
 {% block content %}
 {% if user.is_authenticated %}
     <h1>{{ code }}</h1>
